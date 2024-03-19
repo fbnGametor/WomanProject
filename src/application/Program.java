@@ -14,6 +14,10 @@ public class Program {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("|*****************************|");
+        System.out.println("    Avaliador de Mulheres");
+        System.out.println("|*****************************|");
+
         System.out.print("Quantas mulheres vc deseja avaliar: ");
         int n = sc.nextInt();
 
@@ -52,6 +56,7 @@ public class Program {
         for(Woman woman : mulheres) {
             System.out.print(woman.getName() + ", " + "Rank: ");
             System.out.println(woman.getPoints() + " Points");
+            System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
         }
     }
 }
