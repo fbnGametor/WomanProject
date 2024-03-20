@@ -3,27 +3,15 @@ package model.entities;
 import model.enums.HairColor;
 import model.enums.EyeColor;
 
-public class Woman {
+public class Woman extends Person{
 
-    private String name;
-    private int age;
-    private int height;
-    private double weight;
-    private int hairLength;
-    private HairColor hairColor;
-    private EyeColor eyeColor;
     private int hotness;
-    private int points = 0;
+    private int problem;
 
-    public Woman(String name, int age, int height, double weight, int hairLength, HairColor hairColor, EyeColor eyeColor, int hotness) {
-        this.name = name;
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.hairLength = hairLength;
-        this.hairColor = hairColor;
-        this.eyeColor = eyeColor;
+    public Woman(String name, int age, int height, double weight, int hairLength, HairColor hairColor, EyeColor eyeColor, int hotness, int problem) {
+        super(name, age, height, weight, hairLength, hairColor, eyeColor);
         this.hotness = hotness;
+        this.problem = problem;
     }
 
     public String getName() {
@@ -90,7 +78,16 @@ public class Woman {
         this.hotness = hotness;
     }
 
-    private void setPoints() {
+    public int getProblem(int problem) {
+        return problem;
+    }
+
+    public void setProblem(int problem) {
+        this.problem = problem;
+    }
+
+    @Override
+    protected void setPoints() {
 
         if (age < 14) {
             points += 0;
@@ -175,25 +172,63 @@ public class Woman {
             points += 10;
         }
 
-        if (hotness == 1) {
-            points += 0;
-        } else if (hotness == 2) {
-            points += 3;
-        } else if (hotness == 3) {
-            points += 8;
-        } else if (hotness == 4) {
-            points += 3;
-        } else if (hotness == 5) {
-            points += 10;
-        } else if (hotness == 6) {
-            points += 18;
-        } else if (hotness == 7) {
-            points += 20;
+        switch(hotness) {
+            case 1:
+                points += 0;
+                break;
+            case 2:
+                points += 3;
+                break;
+            case 3:
+                points += 8;
+                break;
+            case 4:
+                points += 3;
+                break;
+            case 5:
+                points += 10;
+                break;
+            case 6:
+                points += 18;
+                break;
+            case 7:
+                points += 20;
+                break;
+
+        }
+
+        switch(problem) {
+            case 1:
+                points += 0;
+                break;
+            case 2:
+                points -= 25;
+                break;
+            case 3:
+                points -= 40;
+                break;
+            case 4:
+                points -= 20;
+                break;
+            case 5:
+                points -= 50;
+                break;
+            case 6:
+                points -= 40;
+                break;
         }
     }
 
+    @Override
     public int getPoints() {
         setPoints();
-        return points;
+        if(points < 0) {
+            return 0;
+        } else if(points > 100) {
+            return 100;
+        } else {
+            return points;
+        }
+
     }
 }

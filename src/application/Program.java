@@ -3,6 +3,7 @@ package application;
 import model.enums.EyeColor;
 import model.enums.HairColor;
 import model.entities.Woman;
+import model.entities.Person;
 
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class Program {
         System.out.print("Quantas mulheres vc deseja avaliar: ");
         int n = sc.nextInt();
 
-        List<Woman> mulheres = new ArrayList<>();
+        List<Person> people = new ArrayList<>();
 
         for(int i=1; i<=n; i++) {
             System.out.println("Mulher #" + i);
@@ -46,17 +47,21 @@ public class Program {
             System.out.println("[ 1 ] Thais Carla\n[ 2 ] Magerrima\n[ 3 ] Magra\n[ 4 ] Gorda\n[ 5 ] Normal\n[ 6 ] Gostosa\n[ 7 ] Nave");
             System.out.print("Corpo: ");
             int hotness = sc.nextInt();
-            mulheres.add(new Woman(name, age, height, weight, hairLenght, hairColor, eyeColor, hotness));
+            System.out.println("[ 1 ] Normal\n[ 2 ] Autismo\n[ 3 ] Sindrome de Down\n[ 4 ] Nanismo\n[ 5 ] Leandrinha vibes\n[ 6 ] Psicopatia");
+            int problem = sc.nextInt();
+            people.add(new Woman(name, age, height, weight, hairLenght, hairColor, eyeColor, hotness, problem));
             System.out.println("Mulher adcionada na lista de comparacao");
         }
 
-        Collections.sort(mulheres, Comparator.comparingInt(Woman::getPoints).reversed());
+        Collections.sort(people, Comparator.comparingInt(Person::getPoints).reversed());
 
         System.out.println("Rank 0-100:");
-        for(Woman woman : mulheres) {
-            System.out.print(woman.getName() + ", " + "Rank: ");
+        System.out.println("|***********************************************|");
+        for(Person woman : people) {
+            System.out.print("    " + woman.getName() + ", " + "Rank: ");
             System.out.println(woman.getPoints() + " Points");
-            System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
         }
+        System.out.println("|***********************************************|");
     }
 }
