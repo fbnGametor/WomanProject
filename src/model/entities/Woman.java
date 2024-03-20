@@ -90,7 +90,7 @@ public class Woman {
         this.hotness = hotness;
     }
 
-    public int getPoints() {
+    private void setPoints() {
 
         if (age < 14) {
             points += 0;
@@ -108,87 +108,92 @@ public class Woman {
             points += 0;
         }
 
-        if(height < 134) {
+        if (height < 134) {
             points += 0;
-        } else if(height <= 140) {
+        } else if (height <= 140) {
             points += 3;
-        } else if(height <= 150) {
+        } else if (height <= 150) {
             points += 10;
-        } else if(height <= 165) {
+        } else if (height <= 165) {
             points += 20;
-        } else if(height <= 170) {
+        } else if (height <= 170) {
             points += 10;
-        } else if(height <= 175) {
+        } else if (height <= 175) {
             points += 5;
-        } else if(height <= 185) {
+        } else if (height <= 185) {
             points += 2;
         } else {
             points += 0;
         }
 
-        if(weight <= 35.0) {
+        if (weight <= 35.0) {
             points += 3;
-        } else if(weight <= 45.0) {
+        } else if (weight > 35 && weight <= 45.0) {
             points += 8;
-        } else if(weight <= 55.0) {
-            if(height > 160) {
+        } else if (weight > 45 && weight <= 55.0) {
+            if (height > 160) {
                 points += 2;
             } else {
                 points += 20;
             }
-        } else if(weight <= 65) {
-            if(height > 170) {
+        } else if (weight > 55 && weight <= 65) {
+            if (height > 170) {
                 points += 12;
             } else {
                 points += 4;
             }
-        } else if(weight <= 75) {
-            if(height > 184) {
+        } else if (weight > 65 && weight <= 75) {
+            if (height > 184) {
                 points += 8;
             } else {
                 points += 1;
             }
-        } else if(weight <= 85){
+        } else if (weight > 75 && weight <= 85) {
             points += 1;
         } else {
             points += 0;
         }
 
-        if(hairLength == 1) {
+        if (hairLength == 1) {
             points += 0;
-        } else if(hairLength == 2) {
+        } else if (hairLength == 2) {
             points += 5;
-        } else if(hairLength == 3) {
+        } else if (hairLength == 3) {
             points += 8;
-        } else if(hairLength == 4) {
+        } else if (hairLength == 4) {
             points += 10;
-        } else if(hairLength == 5) {
+        } else if (hairLength == 5) {
             points += 10;
-        } else if(hairLength == 6) {
+        } else if (hairLength == 6) {
             points += 8;
         }
-        if(hairColor.toString() == "FELIPE_NETO") {
+        if (hairColor.toString() == "FELIPE_NETO") {
             points += 0;
-        } else if(hairColor.toString() == "GREEN" || hairColor.toString() == "BLUE") {
+        } else if (hairColor.toString() == "GREEN" || hairColor.toString() == "BLUE") {
             points += 5;
         } else {
             points += 10;
         }
 
-        if(hotness == 1) {
+        if (hotness == 1) {
             points += 0;
-        } else if(hotness == 2) {
+        } else if (hotness == 2) {
             points += 3;
-        } else if(hotness == 3) {
+        } else if (hotness == 3) {
             points += 8;
-        } else if(hotness == 4) {
+        } else if (hotness == 4) {
             points += 3;
-        } else if(hotness == 5) {
+        } else if (hotness == 5) {
             points += 10;
-        } else if(hotness == 6) {
+        } else if (hotness == 6) {
             points += 18;
-        } else if(hotness == 7) {points += 20;}
+        } else if (hotness == 7) {
+            points += 20;
+        }
+    }
 
+    public int getPoints() {
+        setPoints();
         return points;
     }
 }
