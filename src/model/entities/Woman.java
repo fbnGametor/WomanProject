@@ -89,6 +89,8 @@ public class Woman extends Person{
     @Override
     protected void setPoints() {
 
+        points = 0;
+
         if (age < 14) {
             points += 0;
         } else if (age <= 16) {
@@ -151,22 +153,30 @@ public class Woman extends Person{
             points += 0;
         }
 
-        if (hairLength == 1) {
-            points += 0;
-        } else if (hairLength == 2) {
-            points += 5;
-        } else if (hairLength == 3) {
-            points += 8;
-        } else if (hairLength == 4) {
-            points += 10;
-        } else if (hairLength == 5) {
-            points += 10;
-        } else if (hairLength == 6) {
-            points += 8;
+        switch(hairLength) {
+            case 1:
+                points += 0;
+                break;
+            case 2:
+                points += 5;
+                break;
+            case 3:
+                points += 8;
+                break;
+            case 4:
+                points += 10;
+                break;
+            case 5:
+                points += 10;
+                break;
+            case 6:
+                points += 8;
+                break;
         }
+
         if (hairColor.toString() == "FELIPE_NETO") {
             points += 0;
-        } else if (hairColor.toString() == "GREEN" || hairColor.toString() == "BLUE") {
+        } else if (hairColor.toString() == "VERDE" || hairColor.toString() == "AZUL") {
             points += 5;
         } else {
             points += 10;
@@ -224,8 +234,6 @@ public class Woman extends Person{
         setPoints();
         if(points < 0) {
             return 0;
-        } else if(points > 100) {
-            return 100;
         } else {
             return points;
         }

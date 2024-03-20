@@ -87,8 +87,6 @@ abstract public class Person {
         setPoints();
         if(points < 0) {
             return 0;
-        } else if(points > 100) {
-            return 100;
         } else {
             return points;
         }

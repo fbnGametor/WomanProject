@@ -2,14 +2,14 @@ package model.enums;
 
 public enum HairColor {
 
-    BLACK,
-    BROWN,
-    BLOND,
-    RED,
-    WHITE,
-    GRAY,
-    BLUE,
-    GREEN,
-    LIGHTS,
+    PRETO,
+    MARROM,
+    LOIRO,
+    RUIVO,
+    BRANCO,
+    CINZA,
+    AZUL,
+    VERDE,
+    LUZES,
     FELIPE_NETO;
 }

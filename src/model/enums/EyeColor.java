@@ -2,8 +2,8 @@ package model.enums;
 
 public enum EyeColor {
 
-    BROWN,
-    BLUE,
-    GREEN,
+    MARROM,
+    AZUL,
+    VERDE,
     HAZEL,
 }
