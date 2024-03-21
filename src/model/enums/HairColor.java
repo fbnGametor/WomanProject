@@ -3,7 +3,7 @@ package model.enums;
 public enum HairColor {
 
     PRETO,
-    MARROM,
+    CASTANHO,
     LOIRO,
     RUIVO,
     BRANCO,

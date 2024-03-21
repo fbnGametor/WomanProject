@@ -237,6 +237,5 @@ public class Woman extends Person{
         } else {
             return points;
         }
-
     }
 }
