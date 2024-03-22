@@ -116,9 +116,9 @@ public class Program {
                     }
                 }
 
-                Collections.sort(mulheres, Comparator.comparingInt(Person::getPoints).reversed());
-                Collections.sort(homens, Comparator.comparingInt(Person::getPoints).reversed());
-                Collections.sort(people, Comparator.comparingInt(Person::getPoints).reversed());
+                rankeamentoLista(mulheres);
+                rankeamentoLista(homens);
+                rankeamentoLista(people);
 
                 System.out.println("Rank de Mulheres 0-100:");
                 System.out.println("|***********************************************|");
@@ -234,4 +234,9 @@ public class Program {
 
         return new Man(name, age, height, weight, hairLenght, hairColor, eyeColor, body, balance, problem);
     }
+
+    private static void rankeamentoLista(List list) {
+        Collections.sort(list, Comparator.comparingInt(Person::getPoints).reversed());
+    }
 }
+
