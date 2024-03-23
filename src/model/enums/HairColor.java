@@ -11,5 +11,6 @@ public enum HairColor {
     AZUL,
     VERDE,
     LUZES,
-    FELIPE_NETO;
+    FELIPE_NETO,
+    SEM_CABELO;
 }

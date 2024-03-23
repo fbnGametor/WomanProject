@@ -90,7 +90,5 @@ abstract public class Person {
         } else {
             return points;
         }
-
     }
-
 }
