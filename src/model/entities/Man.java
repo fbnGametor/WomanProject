@@ -66,7 +66,7 @@ public class Man extends Person{
         } else if (height <= 160) {
             points += 2;
         } else if (height <= 170) {
-            points += 4;
+            points += 5;
         } else if (height <= 180) {
             points += 18;
         } else if (height <= 185) {
@@ -97,9 +97,9 @@ public class Man extends Person{
             if(height > 185) {
                 points += 20;
             } else if(height < 185 && height > 178){
-                points += 8;
+                points += 12;
             } else {
-                points += 3;
+                points += 8;
             }
         } else if (weight > 85 && weight <= 95) {
             if(height > 188) {

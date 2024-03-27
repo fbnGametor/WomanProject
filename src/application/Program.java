@@ -7,7 +7,7 @@ import model.entities.Woman;
 import model.entities.Person;
 import model.exceptions.AvaliatorException;
 
-import java.rmi.AlreadyBoundException;
+import java.io.*;
 import java.util.*;
 
 public class Program {
@@ -22,7 +22,7 @@ public class Program {
         List<Woman> mulheres = new ArrayList<>();
         List<Man> homens = new ArrayList<>();
         List<Person> people = new ArrayList<>();
-        
+
         avaliadorPessoa(mulheres, homens, people, sc);
 
         rankeamentoLista(mulheres);
@@ -31,7 +31,7 @@ public class Program {
 
         printRanks(mulheres, homens, people);
 
-        while (true) {
+        while(true) {
             System.out.println("\n\n");
             System.out.print("Deseja avaliar mais pessoas (s/n): ");
             String sCheck = sc.next().strip().toLowerCase();
@@ -39,6 +39,8 @@ public class Program {
             System.out.println();
 
             if (cCheck == 's') {
+
+                avaliadorPessoa(mulheres, homens, people, sc);
 
                 rankeamentoLista(mulheres);
                 rankeamentoLista(homens);
@@ -53,6 +55,7 @@ public class Program {
             }
         }
 
+        writeFile(mulheres, homens, people, sc);
         endOfProgram();
 
         sc.close();
@@ -75,11 +78,11 @@ public class Program {
         System.out.println("Cores de cabelo: ");
         System.out.println("PRETO | CASTANHO\nLOIRO | RUIVO\nBRANCO | CINZA\nAZUL | VERDE\nLUZES | FELIPE_NETO\nSEM_CABELO");
         System.out.print("Cor do cabelo: ");
-        HairColor hairColor = HairColor.valueOf(sc.next().toUpperCase());
+        HairColor hairColor = HairColor.valueOf(sc.next().strip().toUpperCase());
         System.out.println("Cor dos olhos:");
         System.out.println("CASTANHO\nAZUL\nVERDE\nHAZEL");
         System.out.print("Cor dos olhos: ");
-        EyeColor eyeColor = EyeColor.valueOf(sc.next().toUpperCase());
+        EyeColor eyeColor = EyeColor.valueOf(sc.next().strip().toUpperCase());
         System.out.println("Tipo do corpo: ");
         System.out.println("[ 1 ] Thais Carla\n[ 2 ] Magerrima\n[ 3 ] Magra\n[ 4 ] Gorda\n[ 5 ] Normal\n[ 6 ] Gostosa\n[ 7 ] Nave");
         System.out.print("Corpo: ");
@@ -155,7 +158,8 @@ public class Program {
         for (int i = 1; i <= n; i++) {
             System.out.println("Pessoa #" + i);
             System.out.print("Quer analisar um homem ou uma mulher (h/m): ");
-            char check = sc.next().charAt(0);
+            String sCheck = sc.next().strip().toLowerCase();
+            char check = sCheck.charAt(0);
 
             if (check == 'm') {
                 Woman woman = womanScan(sc);
@@ -204,7 +208,70 @@ public class Program {
         }
         System.out.println("|***********************************************|");
     }
+
+    private static void writeFile(List<Woman> mulheres, List<Man> homens, List<Person> people, Scanner sc) {
+
+        System.out.print("Qual o caminho que quer guardar o rank: ");
+        sc.nextLine();
+        String path = sc.nextLine();
+        System.out.print("Quer chama-lo como: ");
+        String fileName = sc.next();
+
+        path += "\\" + fileName + ".txt";
+
+        File file = new File(path);
+        System.out.println("O seu arquivo " + fileName + " esta em: " + file.getParent());
+
+        String[] mulheresTitle = new String[] {"Rank de Mulheres 0-100:", "|***********************************************|"};
+        String[] homensTitle = new String[] {"Rank de Homens 0-100:", "|***********************************************|"};
+        String[] peopleTitle = new String[] {"Rank de Pessoas 0-100:", "|***********************************************|"};
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+            for(String line : mulheresTitle) {
+                bw.write(line);
+                bw.newLine();
+            }
+            for(Woman woman : mulheres) {
+                bw.write("    " + woman.getName() + ", " + "Rank: ");
+                bw.write(woman.getPoints() + " Points");
+                bw.newLine();
+                bw.write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                bw.newLine();
+            }
+            bw.write("|***********************************************|");
+            bw.newLine();
+            bw.newLine();
+            bw.newLine();
+            for(String line : homensTitle) {
+                bw.write(line);
+                bw.newLine();
+            }
+            for(Man man : homens) {
+                bw.write("    " + man.getName() + ", " + "Rank: ");
+                bw.write(man.getPoints() + " Points");
+                bw.newLine();
+                bw.write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                bw.newLine();
+            }
+            bw.write("|***********************************************|");
+            bw.newLine();
+            bw.newLine();
+            bw.newLine();
+            for(String line : peopleTitle) {
+                bw.write(line);
+                bw.newLine();
+            }
+            for(Person person : people) {
+                bw.write("    " + person.getName() + ", " + "Rank: ");
+                bw.write(person.getPoints() + " Points");
+                bw.newLine();
+                bw.write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                bw.newLine();
+            }
+            bw.write("|***********************************************|");
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+     }
 }
-
-
-
