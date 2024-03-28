@@ -242,23 +242,22 @@ public class Program {
         System.out.print("Qual o caminho que quer guardar o rank: ");
         sc.nextLine();
         String path = sc.nextLine();
+
+        boolean success = new File(path).mkdir();
         System.out.print("Quer chama-lo como: ");
         String fileName = sc.nextLine();
 
-        path += "\\" + fileName + ".txt";
+        path = path + File.separator + fileName + ".txt";
 
         File file = new File(path);
         System.out.println("O seu arquivo " + fileName + " esta em: " + file.getParent());
 
-        String[] mulheresTitle = new String[] {"Rank de Mulheres 0-100:", "|***********************************************|"};
-        String[] homensTitle = new String[] {"Rank de Homens 0-100:", "|***********************************************|"};
-        String[] peopleTitle = new String[] {"Rank de Pessoas 0-100:", "|***********************************************|"};
-
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
-            for(String line : mulheresTitle) {
-                bw.write(line);
-                bw.newLine();
-            }
+            bw.write("Rank de Mulheres 0-100:");
+            bw.newLine();
+            bw.write("|***********************************************|");
+            bw.newLine();
+
             for(Woman woman : mulheres) {
                 bw.write("    " + woman.getName() + ", " + "Rank: ");
                 bw.write(woman.getPoints() + " Points");
@@ -270,10 +269,12 @@ public class Program {
             bw.newLine();
             bw.newLine();
             bw.newLine();
-            for(String line : homensTitle) {
-                bw.write(line);
-                bw.newLine();
-            }
+
+            bw.write("Rank de Homens 0-100:");
+            bw.newLine();
+            bw.write("|***********************************************|");
+            bw.newLine();
+
             for(Man man : homens) {
                 bw.write("    " + man.getName() + ", " + "Rank: ");
                 bw.write(man.getPoints() + " Points");
@@ -285,10 +286,12 @@ public class Program {
             bw.newLine();
             bw.newLine();
             bw.newLine();
-            for(String line : peopleTitle) {
-                bw.write(line);
-                bw.newLine();
-            }
+
+            bw.write("Rank de Pessoas 0-100:");
+            bw.newLine();
+            bw.write("|***********************************************|");
+            bw.newLine();
+
             for(Person person : people) {
                 bw.write("    " + person.getName() + ", " + "Rank: ");
                 bw.write(person.getPoints() + " Points");
