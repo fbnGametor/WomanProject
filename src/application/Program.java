@@ -32,7 +32,6 @@ public class Program {
         printRanks(mulheres, homens, people);
 
         while(true) {
-
             System.out.println("\n\n");
             System.out.print("Deseja avaliar mais pessoas (s/n): ");
             String sCheck = sc.next().strip().toLowerCase();
@@ -58,7 +57,7 @@ public class Program {
         }
 
         try {
-            System.out.println("Deseja salvar o rank (s/n)? ");
+            System.out.print("Deseja salvar o rank (s/n): ");
             String sCheck = sc.next().strip().toLowerCase();
             char check = sCheck.charAt(0);
 
@@ -66,7 +65,7 @@ public class Program {
                 writeFile(mulheres, homens, people, sc);
             }
         } catch(InputMismatchException e) {
-            AvaliatorException a = new AvaliatorException("InputMismatchException error");
+            AvaliatorException a = new AvaliatorException("InputMismatchException error!");
             System.out.println("Error: " + a.getMessage());
         }
 
@@ -91,12 +90,17 @@ public class Program {
             System.out.println("[ 1 ] Careca\n[ 2 ] Muito Curto\n[ 3 ] Curto\n[ 4 ] Medio\n[ 5 ] Longo\n[ 6 ] Passando Da Bunda");
             System.out.print("Tamanho do cabelo: ");
             int hairLenght = sc.nextInt();
-            System.out.println("Cores de cabelo: ");
-            System.out.println("PRETO | CASTANHO\nLOIRO | RUIVO\nBRANCO | CINZA\nAZUL | VERDE\nLUZES | FELIPE_NETO\nSEM_CABELO");
-            System.out.print("Cor do cabelo: ");
-            HairColor hairColor = HairColor.valueOf(sc.next().strip().toUpperCase());
+            HairColor hairColor;
+            if(hairLenght == 1) {
+                hairColor = HairColor.valueOf("SEM_CABELO");
+            } else {
+                System.out.println("Cores de cabelo: ");
+                System.out.println("PRETO | CASTANHO\nLOIRO | RUIVO\nBRANCO | CINZA\nAZUL | VERDE\nLUZES | FELIPE_NETO");
+                System.out.print("Cor do cabelo: ");
+                hairColor = HairColor.valueOf(sc.next().strip().toUpperCase());
+            }
             System.out.println("Cor dos olhos:");
-            System.out.println("CASTANHO\nAZUL\nVERDE\nHAZEL");
+            System.out.println("CASTANHO | AZUL\nVERDE | HAZEL");
             System.out.print("Cor dos olhos: ");
             EyeColor eyeColor = EyeColor.valueOf(sc.next().strip().toUpperCase());
             System.out.println("Tipo do corpo: ");
@@ -108,7 +112,6 @@ public class Program {
             System.out.print("Tem problema: ");
             int problem = sc.nextInt();
             System.out.println("Mulher adcionada na lista de comparacao");
-
             woman = new Woman(name, age, height, weight, hairLenght, hairColor, eyeColor, hotness, problem);
         } catch(InputMismatchException | IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
@@ -132,10 +135,15 @@ public class Program {
             System.out.println("[ 1 ] Careca | [ 2 ] Buzz Cut\n[ 3 ] Corte Social | [ 4 ] Americano\n[ 5 ] Low Fade | [ 6 ] Mid Fade\n[ 7 ] High Fade | [ 8 ] Mullet\n[ 9 ] Moica Trem | [ 10 ] Medio\n[ 11 ] Longo | [ 12 ] Tigelinha");
             System.out.print("Estilo do cabelo: ");
             int hairLenght = sc.nextInt();
-            System.out.println("Cores de cabelo: ");
-            System.out.println("PRETO | CASTANHO\nLOIRO | RUIVO\nBRANCO | CINZA\nAZUL | VERDE\nLUZES | FELIPE_NETO\nSEM_CABELO");
-            System.out.print("Cor do cabelo: ");
-            HairColor hairColor = HairColor.valueOf(sc.next().toUpperCase());
+            HairColor hairColor;
+            if(hairLenght == 1) {
+                hairColor = HairColor.valueOf("SEM_CABELO");
+            } else {
+                System.out.println("Cores de cabelo: ");
+                System.out.println("PRETO | CASTANHO\nLOIRO | RUIVO\nBRANCO | CINZA\nAZUL | VERDE\nLUZES | FELIPE_NETO");
+                System.out.print("Cor do cabelo: ");
+                hairColor = HairColor.valueOf(sc.next().strip().toUpperCase());
+            }
             System.out.println("Cor dos olhos:");
             System.out.println("CASTANHO | AZUL\nVERDE | HAZEL");
             System.out.print("Cor dos olhos: ");
